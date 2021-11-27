@@ -50,6 +50,36 @@ internal class ExpiryDateCalculatorTest {
         )
     }
 
+    @Test fun 십만원_납부하면_만료일이_1년_연장됨 () {
+        assertExpiryDate(
+            PaymentData(
+                LocalDate.of(2021, 10, 10),
+                LocalDate.of(2021, 10, 10),
+                100000
+            ),
+            LocalDate.of(2022,10,10)
+        )
+
+        assertExpiryDate(
+            PaymentData(
+                LocalDate.of(2021,1, 31),
+                LocalDate.of(2021, 2, 28),
+                120000
+            ),
+            LocalDate.of(2022,4,30)
+        )
+
+        assertExpiryDate(
+            PaymentData(
+                LocalDate.of(2021,12,28),
+                LocalDate.of(2022, 2, 28),
+                210000
+            ),
+            LocalDate.of(2024, 3, 28)
+        )
+    }
+
+
     private fun assertExpiryDate(paymentData: PaymentData, expiryDate: LocalDate) {
         val expectedExpiryDate = expiryDateCalculator.calculateExpiryDate(paymentData)
         assertEquals(expectedExpiryDate, expiryDate)

@@ -4,8 +4,14 @@ import java.time.LocalDate
 
 class ExpiryDateCalculator {
     fun calculateExpiryDate(paymentData: PaymentData): LocalDate {
-        val addedMonths = paymentData.paymentAmount / 10000
-        val result = paymentData.billingDate.plusMonths(addedMonths.toLong())
+        var paymentAmount = paymentData.paymentAmount
+        val addedYears = paymentAmount.div(100000)
+        if (addedYears > 0) paymentAmount -= addedYears.times(100000)
+
+        val addedMonths = paymentAmount.div(10000)
+        val result = paymentData.billingDate
+                        .plusYears(addedYears.toLong())
+                        .plusMonths(addedMonths.toLong())
 
         if (paymentData.firstBillingDate.dayOfMonth != paymentData.billingDate.dayOfMonth) {
             if (result.month.maxLength() != paymentData.firstBillingDate.dayOfMonth) {

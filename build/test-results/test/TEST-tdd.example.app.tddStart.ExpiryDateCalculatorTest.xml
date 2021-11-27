@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tdd.example.app.tddStart.ExpiryDateCalculatorTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-11-27T12:42:51" hostname="jeongminui-iMac.local" time="0.012">
+<testsuite name="tdd.example.app.tddStart.ExpiryDateCalculatorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-27T13:02:16" hostname="jeongminui-iMac.local" time="0.011">
   <properties/>
-  <testcase name="만원_납부한_후_만료되고_또_만원납부_한_경우()" classname="tdd.example.app.tddStart.ExpiryDateCalculatorTest" time="0.011"/>
-  <testcase name="만원_납부하면_한달_뒤_만료일이_만료됨()" classname="tdd.example.app.tddStart.ExpiryDateCalculatorTest" time="0.001"/>
+  <testcase name="십만원_납부하면_만료일이_1년_연장됨()" classname="tdd.example.app.tddStart.ExpiryDateCalculatorTest" time="0.011"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
