@@ -30,8 +30,34 @@ internal class ExpiryDateCalculatorTest {
         )
     }
 
+    @Test fun 만원_납부한_후_만료되고_또_만원납부_한_경우() {
+        assertExpiryDate(
+            PaymentData(
+                LocalDate.of(2021, 1, 31),
+                LocalDate.of(2021, 2, 28),
+                20000
+            ),
+            LocalDate.of(2021,4,30)
+        )
+
+        assertExpiryDate(
+            PaymentData(
+                LocalDate.of(2021, 2, 28),
+                LocalDate.of(2021, 3, 31),
+                20000,
+            ),
+            LocalDate.of(2021,5,31)
+        )
+    }
+
+    private fun assertExpiryDate(paymentData: PaymentData, expiryDate: LocalDate) {
+        val expectedExpiryDate = expiryDateCalculator.calculateExpiryDate(paymentData)
+        assertEquals(expectedExpiryDate, expiryDate)
+    }
+
     private fun assertExpiryDate(billingDate: LocalDate, paymentAmount: Int, expiryDate: LocalDate) {
-        val expectedExpiryDate: LocalDate = expiryDateCalculator.calculateExpiryDate(billingDate, paymentAmount)
+        val paymentData = PaymentData(billingDate, billingDate, paymentAmount)
+        val expectedExpiryDate: LocalDate = expiryDateCalculator.calculateExpiryDate(paymentData)
         assertEquals(expectedExpiryDate, expiryDate)
     }
 
