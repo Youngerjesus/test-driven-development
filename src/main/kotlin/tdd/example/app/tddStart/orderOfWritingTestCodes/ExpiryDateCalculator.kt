@@ -1,4 +1,4 @@
-package tdd.example.app.tddStart
+package tdd.example.app.tddStart.orderOfWritingTestCodes
 
 import java.time.LocalDate
 
